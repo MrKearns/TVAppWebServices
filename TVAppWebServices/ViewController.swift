@@ -9,32 +9,13 @@ import UIKit
 import PodcastAPI
 
 
-struct Results: Codable{
-    var id: String
-    var rss: String
-    var link: String
-    var audio: String
-//    var link: String
-//    var link: String
-    
-    
-        
-}
-
-//struct Podcast: Codable{
-//    var title: String
-//    var author: String
-//    var image: String
-//    var discription: String
-//}
-
 class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchBar: UITextField!
     
     @IBOutlet weak var searchButton: UIButton!
     
-    // lables
+    // labels
     @IBOutlet weak var displayLabel: UILabel!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
@@ -64,6 +45,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var searchTerm = ""
     
     
+    
+// -------------- VIEW DID LOAD --------------
+    
     override func viewDidLoad() {
         
         
@@ -73,18 +57,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         searchBar.returnKeyType = .done
         searchBar.autocapitalizationType = .words
         searchBar.autocorrectionType = .yes
-        
         searchTerm = searchBar.text ?? ""
         
+       
+        //aip key and client
         
         let apiKey = "7a72b08f9b114b2d9b611bb024719a9c"
-        let client = PodcastAPI.Client(apiKey: apiKey)
+        let client = PodcastAPI.Client(apiKey: apiKey, synchronousRequest: true)
+       
+        
+        // search parameters
         
         var parameters: [String: String] = [:]
-        
         parameters["q"] = "Comedy"
         parameters["sort_by_date"] = "0"
         parameters["type"] = "podcast"
+        
+        
+        // ---- On Open will fetch 10 popular podcasts ----
         
         client.fetchBestPodcasts(parameters: parameters) { response in
             if let error = response.error {
@@ -99,24 +89,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             } else {
                 
-                var text = ""
                 // It's a SwiftyJSON object
                 if let json = response.toJson() {
-                    text += "\(json["results"])"
                     
                     for (index, _)in json["podcasts"].enumerated(){
-                        print(index)
-                        
-                        print("Title: \(json["podcasts"][index]["title"])")
-                        //                        print("Desc: \(json["results"][index]["description_original"])")
-                        print("Image: \(json["podcasts"][index]["image"])")
-                        
-                        
-                        
-                        
+//                        print(index)
+//                        print("Title: \(json["podcasts"][index]["title"])")
+//                        print("Image: \(json["podcasts"][index]["image"])")
                         
                     }
                     
+                    // update labels and images
                     DispatchQueue.main.async {
                         self.displayLabel.text = "\(json["podcasts"][0]["title"])"
             
@@ -195,26 +178,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         if let imageData = data9{
                             self.image9.image = UIImage(data: imageData)
                         }
-
-
-
-                        
-                    }
-                    
-                    
-                    
-                    //DispatchQueue.main.async {
-                        
-                        
                     }
                 }
             }
         }
+    }
     
+    
+    // --------- SEARCH BUTTON TAPPED FUNC ---------
     @IBAction func searchTapped(){
         
         let apiKey = "7a72b08f9b114b2d9b611bb024719a9c"
-        let client = PodcastAPI.Client(apiKey: apiKey)
+        let client = PodcastAPI.Client(apiKey: apiKey, synchronousRequest: true)
         
         var parameters: [String: String] = [:]
         
@@ -234,22 +209,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     print("unknown error")
                 }
             } else {
-                
-                var text = ""
                 // It's a SwiftyJSON object
                 if let json = response.toJson() {
-                    text += "\(json["results"])"
                     
                     for (index, _)in json["results"].enumerated(){
-                        print(index)
-                        
-                        print("Title: \(json["results"][index]["title_original"])")
-                        //                        print("Desc: \(json["results"][index]["description_original"])")
-                        print("Image: \(json["results"][index]["image"])")
-                        
-                        
-                        
-                        
+//                        print(index)
+//                        print("Title: \(json["results"][index]["title_original"])")
+//                        print("Image: \(json["results"][index]["image"])")
                         
                     }
                     
@@ -364,22 +330,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                 self.image9.image = UIImage(data: imageData)
                             }
                         }
-
-
-
-                        
-                    }
-                    
-                    
-                    
-                    //DispatchQueue.main.async {
-                        
-                        
                     }
                 }
             }
         }
+    }
     
+    
+// ---------- TEXT FIELD RETURN FUNC ----------
 //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        let text = searchBar.text
 //        print("---------- \(text) ----------")
@@ -387,9 +345,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 //        return true
 //    }
         
-        
-        
-    }
+}
         
 
 
