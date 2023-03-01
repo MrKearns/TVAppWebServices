@@ -12,6 +12,7 @@
 		81BA2E1E29AD25840069EAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BA2E1C29AD25840069EAE3 /* Main.storyboard */; };
 		81BA2E2029AD25840069EAE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81BA2E1F29AD25840069EAE3 /* Assets.xcassets */; };
 		81BA2E2329AD25840069EAE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BA2E2129AD25840069EAE3 /* LaunchScreen.storyboard */; };
+		81BA2E2B29AD25AB0069EAE3 /* PodcastAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 81BA2E2A29AD25AB0069EAE3 /* PodcastAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81BA2E2B29AD25AB0069EAE3 /* PodcastAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +80,9 @@
 			dependencies = (
 			);
 			name = TVAppWebServices;
+			packageProductDependencies = (
+				81BA2E2A29AD25AB0069EAE3 /* PodcastAPI */,
+			);
 			productName = TVAppWebServices;
 			productReference = 81BA2E1529AD25840069EAE3 /* TVAppWebServices.app */;
 			productType = "com.apple.product-type.application";
@@ -106,6 +111,9 @@
 				Base,
 			);
 			mainGroup = 81BA2E0C29AD25830069EAE3;
+			packageReferences = (
+				81BA2E2929AD25AB0069EAE3 /* XCRemoteSwiftPackageReference "podcast-api-swift" */,
+			);
 			productRefGroup = 81BA2E1629AD25840069EAE3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,6 +354,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		81BA2E2929AD25AB0069EAE3 /* XCRemoteSwiftPackageReference "podcast-api-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ListenNotes/podcast-api-swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		81BA2E2A29AD25AB0069EAE3 /* PodcastAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 81BA2E2929AD25AB0069EAE3 /* XCRemoteSwiftPackageReference "podcast-api-swift" */;
+			productName = PodcastAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 81BA2E0D29AD25830069EAE3 /* Project object */;
 }
