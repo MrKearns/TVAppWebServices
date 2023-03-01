@@ -34,6 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchButton: UIButton!
     
+    // lables
     @IBOutlet weak var displayLabel: UILabel!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
@@ -45,6 +46,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var label8: UILabel!
     @IBOutlet weak var label9: UILabel!
     
+    
+    //Images
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var image1: UIImageView!
     @IBOutlet weak var image2: UIImageView!
